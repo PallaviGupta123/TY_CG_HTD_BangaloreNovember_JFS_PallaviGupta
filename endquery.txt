@@ -1,0 +1,480 @@
+ SQL> select ename,grade from emp e,salgrade s where sal between losal and hisal and job in ('MANAGER
+','ANALYST');
+
+ENAME           GRADE
+---------- ----------
+CLARK               4
+BLAKE               4
+JONES               4
+FORD                4
+SCOTT               4
+
+SQL> select ename,grade from emp e,salgrade s where sal between losal and hisal and job in ('MANAGER
+','ANALYST') and grade in(1,2);
+
+no rows selected
+
+SQL> select * from where job in ('MANAGER','ANALYST');
+select * from where job in ('MANAGER','ANALYST')
+              *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL>  select * from emp where job in ('MANAGER','ANALYST');
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+
+SQL> select * from salgrade;
+
+     GRADE      LOSAL      HISAL
+---------- ---------- ----------
+         1        700       1200
+         2       1201       1400
+         3       1401       2000
+         4       2001       3000
+         5       3001       9999
+
+SQL> select e.ename.m. from emp e, emp m where e.ename =m.mgr;
+select e.ename.m. from emp e, emp m where e.ename =m.mgr
+                  *
+ERROR at line 1:
+ORA-01747: invalid user.table.column, table.column, or column specification
+
+
+SQL> 
+SQL>  select e.ename,m.mgr from emp e, emp m where e.ename =m.mgr;
+ select e.ename,m.mgr from emp e, emp m where e.ename =m.mgr
+                                              *
+ERROR at line 1:
+ORA-01722: invalid number
+
+
+SQL> select e.ename,m.ename from emp e,emp m where e.mgr=m.empno;
+
+ENAME      ENAME
+---------- ----------
+FORD       JONES
+SCOTT      JONES
+TURNER     BLAKE
+ALLEN      BLAKE
+WARD       BLAKE
+JAMES      BLAKE
+MARTIN     BLAKE
+MILLER     CLARK
+ADAMS      SCOTT
+BLAKE      KING
+JONES      KING
+CLARK      KING
+SMITH      FORD
+
+13 rows selected.
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL> select e.ename,m.ename , e.hiredate from emp e, emp m where e.mgr=m.empno;
+
+ENAME      ENAME      HIREDATE
+---------- ---------- ---------
+FORD       JONES      03-DEC-81
+SCOTT      JONES      19-APR-87
+TURNER     BLAKE      08-SEP-81
+ALLEN      BLAKE      20-FEB-81
+WARD       BLAKE      22-FEB-81
+JAMES      BLAKE      03-DEC-81
+MARTIN     BLAKE      28-SEP-81
+MILLER     CLARK      23-JAN-82
+ADAMS      SCOTT      23-MAY-87
+BLAKE      KING       01-MAY-81
+JONES      KING       02-APR-81
+CLARK      KING       09-JUN-81
+SMITH      FORD       17-DEC-80
+
+13 rows selected.
+
+SQL> select e.ename,m.ename,e.deptno ,d.deptno from emp e,emp m where e.mgr=m.empno;
+select e.ename,m.ename,e.deptno ,d.deptno from emp e,emp m where e.mgr=m.empno
+                                 *
+ERROR at line 1:
+ORA-00904: "D"."DEPTNO": invalid identifier
+
+
+SQL> select e.ename,m.ename,e.deptno ,m.deptno from emp e,emp m where e.mgr=m.empno;
+
+ENAME      ENAME          DEPTNO     DEPTNO
+---------- ---------- ---------- ----------
+FORD       JONES              20         20
+SCOTT      JONES              20         20
+TURNER     BLAKE              30         30
+ALLEN      BLAKE              30         30
+WARD       BLAKE              30         30
+JAMES      BLAKE              30         30
+MARTIN     BLAKE              30         30
+MILLER     CLARK              10         10
+ADAMS      SCOTT              20         20
+BLAKE      KING               30         10
+JONES      KING               20         10
+CLARK      KING               10         10
+SMITH      FORD               20         20
+
+13 rows selected.
+
+SQL> select e.ename,m.ename,m.dname from emp e,emp m,dept d where e.mgr=m.empno and m.deptno=d.deptn
+o;
+select e.ename,m.ename,m.dname from emp e,emp m,dept d where e.mgr=m.empno and m.deptno=d.deptno
+                       *
+ERROR at line 1:
+ORA-00904: "M"."DNAME": invalid identifier
+
+
+SQL> select e.ename,m.ename,dname  from emp e,emp m,dept d where e.mgr=m.empno and m.deptno=d.deptno
+;
+
+ENAME      ENAME      DNAME
+---------- ---------- --------------
+SMITH      FORD       RESEARCH
+ALLEN      BLAKE      SALES
+WARD       BLAKE      SALES
+JONES      KING       ACCOUNTING
+MARTIN     BLAKE      SALES
+BLAKE      KING       ACCOUNTING
+CLARK      KING       ACCOUNTING
+SCOTT      JONES      RESEARCH
+TURNER     BLAKE      SALES
+ADAMS      SCOTT      RESEARCH
+JAMES      BLAKE      SALES
+FORD       JONES      RESEARCH
+MILLER     CLARK      ACCOUNTING
+
+13 rows selected.
+
+SQL> select e.ename ,d.dname,m.ename,f.dname from emp e,emp m,dept d,dept f where e.mgr=m.empno and 
+e.deptno=d.deptno and f.deptno=m.deptno;
+
+ENAME      DNAME          ENAME      DNAME
+---------- -------------- ---------- --------------
+CLARK      ACCOUNTING     KING       ACCOUNTING
+JONES      RESEARCH       KING       ACCOUNTING
+BLAKE      SALES          KING       ACCOUNTING
+MILLER     ACCOUNTING     CLARK      ACCOUNTING
+SMITH      RESEARCH       FORD       RESEARCH
+ADAMS      RESEARCH       SCOTT      RESEARCH
+SCOTT      RESEARCH       JONES      RESEARCH
+FORD       RESEARCH       JONES      RESEARCH
+JAMES      SALES          BLAKE      SALES
+ALLEN      SALES          BLAKE      SALES
+MARTIN     SALES          BLAKE      SALES
+TURNER     SALES          BLAKE      SALES
+WARD       SALES          BLAKE      SALES
+
+13 rows selected.
+
+SQL> select e.ename,m.ename , loc from emp e,emp m,dept d where e.mgr=m.empno and e.deptno=d.deptno;
+
+
+ENAME      ENAME      LOC
+---------- ---------- -------------
+FORD       JONES      DALLAS
+SCOTT      JONES      DALLAS
+WARD       BLAKE      CHICAGO
+TURNER     BLAKE      CHICAGO
+MARTIN     BLAKE      CHICAGO
+ALLEN      BLAKE      CHICAGO
+JAMES      BLAKE      CHICAGO
+MILLER     CLARK      NEW YORK
+ADAMS      SCOTT      DALLAS
+BLAKE      KING       CHICAGO
+JONES      KING       DALLAS
+CLARK      KING       NEW YORK
+SMITH      FORD       DALLAS
+
+13 rows selected.
+
+SQL> select * from emp e,dept d where e.job in('ANALYST','MANAGER') and e
+  2  
+SQL> 
+SQL> select * from emp e,dept d where e.job in('ANALYST','MANAGER') and d.dname in ('RESEARCH','ACCO
+UNTING');
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     DEPTNO DNAME          LOC
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- ---
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20         10 ACCOUNTING     NEW YORK
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30         10 ACCOUNTING     NEW YORK
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10         10 ACCOUNTING     NEW YORK
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20         10 ACCOUNTING     NEW YORK
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20         10 ACCOUNTING     NEW YORK
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20         20 RESEARCH       DALLAS
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30         20 RESEARCH       DALLAS
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10         20 RESEARCH       DALLAS
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20         20 RESEARCH       DALLAS
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20         20 RESEARCH       DALLAS
+
+10 rows selected.
+
+SQL>  select * from emp e,dept d where e.deptno=d.deptno and  e.job in('ANALYST','MANAGER') and d.dn
+ame in ('RESEARCH','ACCOUNTING');
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     DEPTNO DNAME          LOC
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- ---
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10         10 ACCOUNTING     NEW YORK
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20         20 RESEARCH       DALLAS
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20         20 RESEARCH       DALLAS
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20         20 RESEARCH       DALLAS
+
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTING     NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL>  select * from emp e,dept d where e.deptno=d.deptno and e.job='SALESMAN' and and d.loc!='DALLAS
+';
+ select * from emp e,dept d where e.deptno=d.deptno and e.job='SALESMAN' and and d.loc!='DALLAS'
+                                                                             *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select * from emp e,dept d where e.deptno=d.deptno and e.job='SALESMAN' and d.loc!='DALLAS';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     DEPTNO DNAME          LOC
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- ---
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30         30 SALES          CHICAGO
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30         30 SALES          CHICAGO
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30         30 SALES          CHICAGO
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30         30 SALES          CHICAGO
+
+SQL> select d.dname ,d.loc ,e.ename from emp e,emp m, dept d where e.deptno=d.deptno and e.mgr=m.emp
+no and e.name ='BLAKE';
+select d.dname ,d.loc ,e.ename from emp e,emp m, dept d where e.deptno=d.deptno and e.mgr=m.empno an
+                                                                                                    
+ERROR at line 1:
+ORA-00904: "E"."NAME": invalid identifier
+
+
+SQL> select d.dname ,d.loc ,e.ename from emp e,emp m, dept d where e.deptno=d.deptno and e.mgr=m.emp
+no and e.ename='BLAKE';
+
+DNAME          LOC           ENAME
+-------------- ------------- ----------
+SALES          CHICAGO       BLAKE
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL> select d.dname ,d.loc ,m.ename from emp e,emp m, dept d where e.deptno=d.deptno and e.mgr=m.emp
+no and e.ename='BLAKE';
+
+DNAME          LOC           ENAME
+-------------- ------------- ----------
+SALES          CHICAGO       KING
+
+SQL>  select d.dname ,d.loc ,e.ename from emp e,emp m, dept d where e.deptno=d.deptno and e.mgr=m.em
+pno 
+
+SQL> select d.dname ,d.loc ,e.ename from emp e,emp m, dept d where e.deptno=d.deptno and e.mgr=m.emp
+no and e.ename='BLAKE';
+
+DNAME          LOC           ENAME
+-------------- ------------- ----------
+SALES          CHICAGO       BLAKE
+
+SQL> select d.dname ,d.loc ,e.ename from emp e,emp m, dept d where e.deptno=d.deptno and e.empno=m.m
+gr and m.ename='BLAKE';
+
+DNAME          LOC           ENAME
+-------------- ------------- ----------
+ACCOUNTING     NEW YORK      KING
+
+SQL> select d.dname ,d.loc ,e.ename from emp e,emp m, dept d where e.mgr=m.empno and  e.deptno=d.dep
+tno and m.ename='BLAKE';
+
+DNAME          LOC           ENAME
+-------------- ------------- ----------
+SALES          CHICAGO       TURNER
+SALES          CHICAGO       ALLEN
+SALES          CHICAGO       WARD
+SALES          CHICAGO       JAMES
+SALES          CHICAGO       MARTIN
+
+SQL> select * from emp where emp e,dept d,emp m where e.mgr =m.empno and e.deptno=d.deptno and e.ena
+me='SCOTT';
+select * from emp where emp e,dept d,emp m where e.mgr =m.empno and e.deptno=d.deptno and e.ename='S
+                            *
+ERROR at line 1:
+ORA-00920: invalid relational operator
+
+
+SQL>  select * from emp e,dept d,emp m where e.mgr =m.empno and e.deptno=d.deptno and e.ename='SCOTT
+';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     DEPTNO DNAME          LOC                
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- ---
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20         20 RESEARCH       DALLAS              756
+
+SQL> select * from emp where deptno =(select deptno from emp where ename='SCOTT');
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+
+SQL> select b.* from emp a,emp b where a.deptno=b.deptno and a.ename='SCOTT' and b.ename!='SCOTT';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+
+SQL> select * from emp emp e,emp m where e.mgr=m.empno and e.sal>m.sal;
+select * from emp emp e,emp m where e.mgr=m.empno and e.sal>m.sal
+                      *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> select * from  emp e,emp m where e.mgr=m.empno and e.sal>m.sal;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO      EMPNO ENAME      JOB         
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- ---
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20       7566 JONES      MANAGER         78
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20       7566 JONES      MANAGER         78
+
+SQL> select * from  emp a,emp b where a.mgr=b.empno and a.sal=b.sal;
+
+no rows selected
+
+SQL> select * from  emp a,emp b where a.sal=b.sal;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO      EMPNO ENAME      JOB         
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- ---
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20       7369 SMITH      CLERK           7902 1
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30       7499 ALLEN      SALE
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30       7521 WARD       SALES
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30       7521 WARD       SALES
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20       7566 JONES      MANAGER         78
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30       7654 MARTIN     SAL
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30       7654 MARTIN     SAL
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30       7698 BLAKE      MANAGER         78
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10       7782 CLARK      MANAGER         78
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20       7788 SCOTT      ANALYST         75
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20       7788 SCOTT      ANALYST         75
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10       7839 KING       PRESIDENT            17-NOV-8
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30       7844 TURNER     SALESMAN     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20       7876 ADAMS      CLERK           7788 2
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30       7900 JAMES      CLERK           7698 0
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20       7902 FORD       ANALYST         756
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20       7902 FORD       ANALYST         756
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10       7934 MILLER     CLERK           7782 
+
+18 rows selected.
+
+SQL> select * from  emp a,emp b where a.mgr=b.empno and a.sal=b.sal and a.empno!=b.empno;
+
+no rows selected
+
+SQL> select * from  emp a,emp b where a.mgr=b.empno and a.sal=b.sal and a.empno!=b.empno;
+
+no rows selected
+
+SQL> select a.* from emp a,emp b where a.sal=b.sal and a.empno!=b.empno;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+
+SQL> select * from emp a , emp b where a.sal=b.sal and b.ename='FORD';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO      EMPNO ENAME      JOB         
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- ---
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20       7902 FORD       ANALYST         756
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20       7902 FORD       ANALYST         756
+
+SQL> select * from emp a,emp b where a.sal=b.sal and a.empno!=b.empno and a.ename ='FORD';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO      EMPNO ENAME      JOB         
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- ---
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20       7788 SCOTT      ANALYST         75
+
+SQL>  select b.* from emp a,emp b where a.sal=b.sal and a.empno!=b.empno and a.ename ='FORD';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+
+SQL> 
