@@ -1,0 +1,43 @@
+<!-- <input type="search" name="search" placeholder="Search Customer Name" class="form-control col-md-4
+offset-4 mt-3 mb-3" [(ngModel)]='search'>
+<div *ngFor='let product of products | filterProducts: search'> -->
+<form class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+
+<div class="alert alert-danger" *ngIf="error">{{error}}</div>
+<div class="alert alert-success" *ngIf="success">{{success}}</div>
+<div class="container mt-3">
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Customer Id</th>
+                <th>Name</th>
+                <th>StreetAdd1</th>
+                <th>StreetAdd2</th>
+                <th>City</th>
+                <th>ZipCode</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Action</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let customer of customers'>
+                <td>{{customer.customerId}}</td>
+                <td>{{customer.customername}}</td>
+                <td>{{customer.streetAdd1}}</td>
+                <td>{{customer.streetAdd2}}</td>
+                <td>{{customer.city}}</td>
+                <td>{{customer.zipcode}}</td>
+                <td>{{customer.email}}</td>
+                <td>{{customer.phone}}</td>
+                <td>
+                    <button class="btn btn-outline-primary" (click)='deleteCustomersForm(customer)'>Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

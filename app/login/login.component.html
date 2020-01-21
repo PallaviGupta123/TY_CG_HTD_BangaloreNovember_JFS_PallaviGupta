@@ -1,0 +1,30 @@
+<div class="login-div row align-items-center">
+    <div class="col-md-4 offset-md-4 login-form">
+        <form #loginForm="ngForm" novalidate (ngSubmit)="loginForm.form.valid && validateLogin()">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" minlength="6" required class="form-control" [(ngModel)]="formModel.email" #email="ngModel">
+                <div *ngIf='email.touched && email.invalid'>
+                    <div class="alert alert-danger" *ngIf='email.errors.required'>This field is mandatory</div>
+                    <div class="alert alert-danger" *ngIf='email.errors.minlength'>Minimum 6 characters are required</div>
+                    <div class="alert alert-danger" *ngIf='email.errors.email'>Enter proper valid email</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="form-control" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{4,8}$" [(ngModel)]="formModel.password" #password="ngModel">
+                <div *ngIf='password.invalid && password.touched'>
+                    <div class="alert alert-danger" *ngIf='password.errors.required'>This field is mandatory</div>
+                    <div class="alert alert-danger" *ngIf='password.errors.pattern'>4 to 8 charactrs, should include one uppercase,one lowercase and one number
+                    </div>
+                </div>
+            </div>
+
+
+            <button type="submit" class="btn btn-success float-right" [disabled]='loginForm.invalid'>
+            Login
+        </button>
+        </form>
+    </div>
+</div>

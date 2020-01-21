@@ -1,0 +1,32 @@
+.login-div {
+    background: url(/assets/images/timber1.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100vh;
+}
+
+.login-form {
+    background: #000000;
+    color: #ffffff;
+    padding: 25px;
+    opacity: .7;
+}
+
+.ng-valid[required],
+.ng-valid.required {
+    border-left: 5px solid #42A948;
+}
+
+.alert-danger {
+    color: #f7f5f5;
+    background-color: #a59d9e;
+    border-color: #a59d9e;
+}
+
+.btn-success:disabled {
+    color: #000;
+    background-color: #ccc;
+    border-color: #ccc;
+}

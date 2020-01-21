@@ -1,0 +1,13 @@
+.bg-light {
+    background: #1e7e34 !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #bcd8c2;
+    font-size: 18px;
+}
+
+li.nav-item.active {
+    border-bottom: 2px solid #bcd8c2;
+    font-weight: 500;
+}

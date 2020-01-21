@@ -1,0 +1,48 @@
+<div class="alert alert-success" *ngIf='message'>{{message}}</div>
+<div class="alert alert-danger" *ngIf='error'>{{error}}</div>
+<div class="col-md-4 offset-4 mt-4">
+    <form #addCustomerForm="ngForm" (ngSubmit)='addCustomer(addCustomerForm)'>
+        <div class="form-group">
+            <label for="customerName">Name</label>
+            <input type="text" name="customerName" id="customerName" #customerName="ngModel" ngModel required class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="customerAddress">StreetAddress1</label>
+            <input type="text" name="customerAddress" id="customerAddress" #customerName="ngModel" ngModel required class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="customerAddress">StreetAddress2</label>
+            <input type="text" name="customerAddress" id="customerAddress" #customerName="ngModel" ngModel required class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="customerTown">Town</label>
+            <input type="text" name="customerTown" id="customerTown" #customerName="ngModel" ngModel required class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="customerZip">Pincode</label>
+            <input type="text" name="customerZip" id="customerZip" #customerName="ngModel" ngModel required class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="customerPhone">Phone number</label>
+            <input type="text" name="customerPhone" id="customerPhone" #customerName="ngModel" ngModel required class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="customerEmail">Email</label>
+            <input type="text" name="customerEmail" id="customerEmail" #customerName="ngModel" ngModel required class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="customerEmail">Password</label>
+            <input type="text" name="customerEmail" id="customerEmail" #customerName="ngModel" ngModel required class="form-control">
+        </div>
+        <button type="submit" class="btn btn-outline-primary float-right">
+    Submit
+</button>
+    </form>
+
+
+
+
+
+
+
+</div>

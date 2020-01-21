@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <a class="navbar-brand" href="/">Forestry Management System</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/">WELCOME ADMIN</a>
+            </li>
+            <li class="nav-item dropdown">
+                <div ngbDropdown class="d-inline-block">
+                    <a class="nav-item active" id="dropdownBasic1" ngbDropdownToggle>Customer </a>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <a class="nav-link" routerLink="/addCustomerss" ngbDropdownItem>Add Customer - 1</a>
+                        <a class="nav-link" routerLink="/getAllCustomers" ngbDropdownItem>Edit/Search  Customer</a>
+
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+
+                <div ngbDropdown class="d-inline-block">
+                    <a class="nav-item active" id="dropdownBasic1" ngbDropdownToggle>Product </a>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <a class="nav-link" routerLink="/addProduct" ngbDropdownItem>Add Product</a>
+                        <a class="nav-link" routerLink="/" ngbDropdownItem>Edit/Search Action</a>
+
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <div ngbDropdown class="d-inline-block">
+                    <a class="nav-item active" id="dropdownBasic1" ngbDropdownToggle>Contractor </a>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <a class="nav-link" routerLink="/" ngbDropdownItem> Add Contractor</a>
+                        <a class="nav-link" routerLink="/" ngbDropdownItem>Edit/Search Contractor</a>
+
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <ul class="navbar-nav login-link">
+            <li class="nav-item" (click)="logout()">
+                <a class="nav-link" routerLink="/login">Logout</a>
+            </li>
+        </ul>
+    </div>
+
+</nav>
